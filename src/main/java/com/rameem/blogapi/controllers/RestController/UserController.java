@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.rameem.blogapi.model.UserModel;
 import com.rameem.blogapi.services.UserServices;
 
+import jakarta.servlet.http.HttpSession;
+
 @RestController
 @RequestMapping("/api/auth")
 public class UserController {
@@ -25,10 +27,11 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody UserModel user) {
+    public String login(@RequestBody UserModel user, HttpSession session) {
         UserModel loggedInUser = userServices.loginUser(user.getEmail(), user.getPassword());
 
         if (loggedInUser != null) {
+            session.setAttribute("user", loggedInUser);
             return "Login Successful";
         } else {
             return "Invalid email or password";
