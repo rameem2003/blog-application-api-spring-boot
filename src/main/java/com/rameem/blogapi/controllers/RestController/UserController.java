@@ -34,7 +34,7 @@ public class UserController {
             session.setAttribute("user", loggedInUser);
             return "Login Successful";
         } else {
-            return "Invalid email or password";
+            return "Invalid email or password .";
         }
     }
 }
