@@ -1,6 +1,7 @@
 package com.rameem.blogapi.controllers.RestController;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,12 +13,12 @@ import com.rameem.blogapi.services.UserServices;
 import jakarta.servlet.http.HttpSession;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/")
 public class UserController {
     @Autowired
     private UserServices userServices;
 
-    @PostMapping("/register")
+    @PostMapping("/api/auth/register")
     public String register(@RequestBody UserModel user) {
 
         userServices.createUser(user);
@@ -26,15 +27,16 @@ public class UserController {
 
     }
 
-    @PostMapping("/login")
-    public String login(@RequestBody UserModel user, HttpSession session) {
+    @PostMapping("/api/auth/login")
+    public String login(@RequestBody UserModel user, HttpSession session, Model model) {
         UserModel loggedInUser = userServices.loginUser(user.getEmail(), user.getPassword());
 
         if (loggedInUser != null) {
             session.setAttribute("user", loggedInUser);
-            return "Login Successful";
+            return "redirect:/";
         } else {
-            return "Invalid email or password";
+            model.addAttribute("error", "Invalid credentials");
+            return "login";
         }
     }
 }
