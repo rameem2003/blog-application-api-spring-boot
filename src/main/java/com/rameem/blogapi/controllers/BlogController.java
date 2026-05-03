@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.rameem.blogapi.model.BlogModel;
 import com.rameem.blogapi.model.UserModel;
@@ -23,13 +22,12 @@ public class BlogController {
     @Autowired
     private BlogServices blogServices;
 
-
     @GetMapping("/")
     public String index(HttpSession session) {
         UserModel user = (UserModel) session.getAttribute("user");
-        if(user == null){
-            return "redirect:/login";
-        }
+        // if (user == null) {
+        // return "redirect:/login";
+        // }
         return "index";
     }
 

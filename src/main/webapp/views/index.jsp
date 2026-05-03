@@ -1,14 +1,12 @@
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Home</title>
-</head>
-<body>
-<h1>Home</h1>
-<form action="/api/auth/logout" method="post">
-    <button type="submit">Logout</button>
-</form>
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <jsp:include page="layouts/navbar.jsp" />
+  </body>
 </html>
