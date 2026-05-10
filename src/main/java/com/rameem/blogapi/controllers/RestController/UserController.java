@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.rameem.blogapi.model.UserModel;
@@ -28,12 +27,26 @@ public class UserController {
         return "login";
     }
 
+    @GetMapping("/register")
+    public String getRegister(HttpSession session) {
+        UserModel user = (UserModel) session.getAttribute("user");
+        if (user != null) {
+            return "redirect:/";
+        }
+        return "register";
+    }
+
     @PostMapping("/api/auth/register")
-    public String register(@RequestBody UserModel user) {
+    public String register(UserModel user, Model model) {
 
-        userServices.createUser(user);
+        UserModel createdUser = userServices.createUser(user);
 
-        return "User Registered Successfully";
+        if (createdUser != null) {
+            return "redirect:/login";
+        } else {
+            model.addAttribute("error", "Registration failed. Please try again.");
+            return "registration";
+        }
 
     }
 
@@ -49,4 +62,13 @@ public class UserController {
             return "login";
         }
     }
+
+    @PostMapping("/api/auth/logout")
+    public String logout(HttpSession session) {
+        // TODO: process POST request
+
+        session.invalidate();
+        return "redirect:/";
+    }
+
 }
