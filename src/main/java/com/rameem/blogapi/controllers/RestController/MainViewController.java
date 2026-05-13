@@ -17,4 +17,13 @@ public class MainViewController {
         return "index";
     }
 
+    @GetMapping("/add-blog")
+    public String addNewBlogPage(HttpSession session) {
+        UserModel user = (UserModel) session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/login";
+        }
+        return "add-blog";
+    }
+
 }

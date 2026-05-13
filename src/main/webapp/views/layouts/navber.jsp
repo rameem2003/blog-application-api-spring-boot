@@ -108,14 +108,17 @@
 <c:when test="${not empty sessionScope.user}">
     <div class=" flex flex-col items-end justify-end">
         <span class="text-slate-900 text-sm font-semibold">Welcome, ${sessionScope.user.name.split(" ")[0]}!</span>
-        <form action="/api/auth/logout" method="POST">
+        <div class=" flex flex-row gap-2">
+<a class="text-blue-600 hover:text-blue-800" href="/add-blog">Add new blog</a>
+          <form action="/api/auth/logout" method="POST">
             <button
-                type="submit"
-        
+            type="submit"
+            
             >
-                Log out
-            </button>
+            Log out
+          </button>
         </form>
+      </div>
     </div>
 </c:when>
 
