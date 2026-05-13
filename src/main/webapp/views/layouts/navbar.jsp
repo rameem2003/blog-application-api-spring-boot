@@ -115,11 +115,11 @@ aria-label="Main navigation"
                 <div class=" flex flex-col">
 
                   
-                  <span class="text-sm font-semibold text-slate-900">
+                  <a href="/profile" class="text-sm font-semibold text-slate-900">
                     
                     ${sessionScope.user.name}
                     
-                  </span>
+                  </>
 
                   <a href="/new-blog" class="text-sm font-semibold text-blue-600"> Add New Blog</a>
                 </div>

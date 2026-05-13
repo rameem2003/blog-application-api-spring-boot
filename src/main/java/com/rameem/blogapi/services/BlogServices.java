@@ -1,6 +1,7 @@
 package com.rameem.blogapi.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,27 @@ public class BlogServices {
 
     public BlogModel getBlogById(Long id) {
         return blogRepository.findById(id).orElse(null);
+    }
+
+    public BlogModel updateBlog(Long id, BlogModel updatedBlog) {
+
+        Optional<BlogModel> optionalBlog = blogRepository.findById(id);
+
+        if (optionalBlog.isPresent()) {
+
+            BlogModel existingBlog = optionalBlog.get();
+
+            existingBlog.setTitle(updatedBlog.getTitle());
+            existingBlog.setContent(updatedBlog.getContent());
+
+            if (updatedBlog.getUser() != null) {
+                existingBlog.setUser(updatedBlog.getUser());
+            }
+
+            return blogRepository.save(existingBlog);
+        }
+
+        return null;
     }
 
     public void deleteBlog(Long id) {

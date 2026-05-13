@@ -4,8 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -36,6 +40,16 @@ public class BlogController {
         return "newBlog";
     }
 
+    @GetMapping("/blog/{id}")
+    public String singleBlog(@PathVariable Long id, Model model) {
+        System.err.println(id);
+        // fetch the blog by id and add it to the model
+        BlogModel blog = blogServices.getBlogById(id);
+
+        model.addAttribute("blog", blog);
+        return "blog-page";
+    }
+
     @GetMapping("/api/blog/all")
     @ResponseBody
     public List<BlogModel> getAllBlogsController() {
@@ -55,6 +69,13 @@ public class BlogController {
         blogServices.saveBlog(newBLog);
         return "redirect:/";
 
+    }
+
+    @PutMapping("/api/blog/update/{id}")
+    @ResponseBody
+    public BlogModel updateBlog(@PathVariable Long id, @RequestBody BlogModel blog) {
+
+        return blogServices.updateBlog(id, blog);
     }
 
 }
