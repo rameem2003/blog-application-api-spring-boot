@@ -112,11 +112,17 @@ aria-label="Main navigation"
 
                 </div>
 
-                <span class="text-sm font-semibold text-slate-900">
+                <div class=" flex flex-col">
 
+                  
+                  <span class="text-sm font-semibold text-slate-900">
+                    
                     ${sessionScope.user.name}
+                    
+                  </span>
 
-                </span>
+                  <a href="/new-blog" class="text-sm font-semibold text-blue-600"> Add New Blog</a>
+                </div>
 
              <form action="/api/auth/logout" method="POST">
                <button type="submit"

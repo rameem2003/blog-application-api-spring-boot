@@ -18,6 +18,7 @@ public class BlogServices {
     }
 
     public List<BlogModel> getAllBlogs() {
+        System.out.println("Getting all blogs");
         return blogRepository.findAll();
     }
 
