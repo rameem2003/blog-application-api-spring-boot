@@ -36,6 +36,16 @@ public class UserController {
         return "register";
     }
 
+    @GetMapping("/profile")
+    public String profilePage(HttpSession session, Model model) {
+        UserModel user = (UserModel) session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/login";
+        }
+        model.addAttribute("user", user);
+        return "profile";
+    }
+
     @PostMapping("/api/auth/register")
     public String register(UserModel user, Model model) {
 

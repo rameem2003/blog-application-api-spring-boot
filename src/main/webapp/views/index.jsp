@@ -82,7 +82,7 @@
       <h3 class="text-slate-900 text-base font-semibold">\${blog.title}</h3>
       <p class="mt-2 text-sm text-slate-600 leading-relaxed">By: \${blog.user.name}</p>
    </div>
-   <a href="#"
+   <a href="/blog/\${blog.id}"
       class="inline-block mt-6 py-2 px-3.5 text-sm rounded-md font-semibold cursor-pointer text-white border border-blue-600 bg-blue-600 hover:bg-blue-700 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
       Read more
    </a>

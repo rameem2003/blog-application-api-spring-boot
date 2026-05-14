@@ -27,6 +27,13 @@ public class BlogController {
         return blogServices.getAllBlogs();
     }
 
+    @GetMapping("/api/blog/user")
+    @ResponseBody
+    public List<BlogModel> getBlogByUser(HttpSession session) {
+        UserModel user = (UserModel) session.getAttribute("user");
+        return blogServices.blogByUser(user.getId());
+    }
+
     @PostMapping("/api/blog/add")
     public String addNewBlogController(BlogModel newBLog, HttpSession session) {
 
