@@ -1,8 +1,12 @@
 package com.rameem.blogapi.repository;
 
-import com.rameem.blogapi.model.BlogModel;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface BlogRepository extends JpaRepository<BlogModel, Long> {
+import com.rameem.blogapi.model.BlogModel;
 
+public interface BlogRepository extends JpaRepository<BlogModel, Long> {
+    // get blog by user id
+    List<BlogModel> findByUserId(Long userId);
 }

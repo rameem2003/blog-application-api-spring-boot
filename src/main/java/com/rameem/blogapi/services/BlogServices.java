@@ -23,6 +23,10 @@ public class BlogServices {
         return blogRepository.findAll();
     }
 
+    public List<BlogModel> getBlogsByUserId(Long userId) {
+        return blogRepository.findByUserId(userId);
+    }
+
     public BlogModel getBlogById(Long id) {
         return blogRepository.findById(id).orElse(null);
     }
